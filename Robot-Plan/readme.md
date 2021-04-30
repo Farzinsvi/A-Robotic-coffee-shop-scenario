@@ -19,6 +19,38 @@ The waiter moves at 2 meters per time unit; 1 meter per time unit if it is using
 Finally, the robot has to clean tables: it takes 2 time units per square meter to clean a table.
 The robot cannot clean a table while carrying the tray.
 
+# Problems
+
+**Problem 1:** There are 2 customers at table 2: they ordered 2 cold drinks. Tables 3 and
+4 need to be cleaned.
+**Problem 2**: There are 4 customers at table 3: they ordered 2 cold drinks and 2 warm
+drinks. Table 1 needs to be cleaned.
+**Problem 3:** There are 2 customers at table 4: they ordered 2 warm drinks. There are
+also 2 customers at table 1: they ordered 2 warm drinks. Table 3 needs to be cleaned.
+**Problem 4:** There are 2 customers at table 4 and 2 customers at table 1: they all
+ordered cold drinks. There are also 4 customers at table 3: they all ordered warm
+drinks. Table 4 needs to be cleaned.
+
+# Optional extensions
+**1.** Warm drinks cool down, so you need to serve the customer before the drink gets too
+cold. A warm drink takes 4 time units to become cold. A customer will not accept a
+warm drink delivered more than 4 time units after it was put on the bar by the barista.
+**2.** There are 2 waiters. The coffee shop is doing well, so the owner decided to buy a
+second waiter. This is of course making things a bit more complicated: only one waiter
+can be at the bar at a given time; further, the owner does not want that a table is
+served by both the waiters: only one waiter can deal with the orders of a given table.
+**3.** Finish your drink. After receiving the drink, a customer will finish it in 4 time units, and
+will leave after that. When all the customers of a table have left, the waiter robot can
+clean it. The waiter robot is required to clean all the tables to complete the problem.
+**4.** We also serve food. The coffee shop is also serving delicious biscuits. They need no
+preparation, and can be picked up by the waiter at the bar counter. All the customers
+with cold drinks will also receive a biscuit, but only after having received their drink.
+The waiter can not bring at the same time the drink and the biscuit, but must deliver
+the drink, and then go back to the counter to take a biscuit for the customer.
+For the sake of moving biscuits around, the same limitations as for drinks apply (see
+above).
+
+
 # PDDL 2.1 Model Explanation:
 
 The domain was modeled with Temporal Planning because of its relative ease of representing the model. In this case, actions defined to represent the problem are classified into two groups, **durative-actions** _(actions that have a duration)_ and **instantaneous actions.**
