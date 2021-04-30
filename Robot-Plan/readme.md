@@ -1,3 +1,24 @@
+# Details
+
+In the coffee shop, there are two robots: one barista and one waiter. The barista is in charge
+of preparing drinks. Orders are placed by customers by using a dedicated interface at the
+entrance of the shop. You don’t need to model that, and you can assume that, at the start of
+your planning problem, all the orders are known. The customer that put the order is of course
+known, as it is the place where she sits.
+It takes the barista robot 3 time units to prepare a cold drink, and 5 time units to prepare a
+warm drink.
+Once ready, the drinks are put on the bar, where the waiter can pick them up. The waiter
+robot can grasp a single drink using one of its grippers, and bring it to the table where the
+corresponding customer is seated. The waiter is not able to grasp one drink per each gripper,
+but can only bring a drink at a time if it is not using a tray. If it decides to use a tray, then the
+waiter can carry up to 3 drinks at the same time, but its moving speed is reduced – for ensuring
+everything is balanced. When using a tray, the waiter cannot carry any additional drink, beside
+the 3 on the tray. The tray can be taken from the bar, and must be returned there after use.
+The waiter is not allowed to leave the tray on a table.
+The waiter moves at 2 meters per time unit; 1 meter per time unit if it is using the tray.
+Finally, the robot has to clean tables: it takes 2 time units per square meter to clean a table.
+The robot cannot clean a table while carrying the tray.
+
 # PDDL 2.1 Model Explanation:
 
 The domain was modeled with Temporal Planning because of its relative ease of representing the model. In this case, actions defined to represent the problem are classified into two groups, **durative-actions** _(actions that have a duration)_ and **instantaneous actions.**
