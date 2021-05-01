@@ -237,7 +237,43 @@ The cleaning table action is pretty straightforward; a table needs to be cleaned
 
 # LPG Results 
 
-
+The planning engine used is LPG-td-1.0. The planner performed fairly well with
+problem1 and problem2 which has fewer goals to be achieved. However, with problems
+3 and 4 the planner took a very long search time to find a solution and when it
+eventually found a solution, the solution was filled with redundant actions which cause
+poor plan quality, long duration to reach the goal, and a high number of ground actions
+and a very high metric value. To alleviate this problem some steps were taken.
+1. Reduce the Number of parameters in some actions: In the initial domain, some
+actions had customer as their parameter and a waiter had left and right gripper.
+The customer object was used in a predicate to specify the customer that
+ordered a drink, however, we found that this wasn’t required since we could
+connect a drink to a table where a customer that ordered it is sitting. We also
+removed one of the parameters for specifying left and right gripper, since the
+question specified that only one gripper can be used to pick up a drink at a time.
+We found that it was better to have just one gripper instead of having to and then
+constraining the waiter robot to use only one. With this step, the customer object
+was removed and the gripper became a boolean predicate.
+2. Reduce the number of actions: The initial domain had two actions for preparing
+drinks( (prepare-cold-drink) (prepare-warm-drink)) and two actions for cleaning
+table ((clean-small-table) (clean-big-table)). We changed this by using the
+function (prep-time ?drink) to specify the time it takes to prepared each of the
+drinks and then with the function (cleaning-time ?table) to specify the time it
+takes to clean each of the tables. This reduced the number of actions in the
+domain file by 2.
+3. Set the option for number of solutions: The planner also has an option to help
+find a plan with better quality. The is done with the help of the option to set the
+number of solutions ( -n <number-of-solution>). In this mode, LPG-td finds a
+sequence of solutions, when the number "x" of solutions specified for the
+incremental mode is greater than 1, each solution computed is an improvement
+to the previous one (in terms of the plan metric indicated in the problem file).
+This helps to find the most optimal plan.
+After taking each of these steps the search time for problems 3 and 4 reduced
+significantly and the planner was able to find an optimal plan for problems 3 and 4. The
+number of ground actions was cut to half for problem 2 and also reduced for problem 1.
+NOTE: In problem 4, instead of modeling the problem as table4 needs cleaning, the
+problem was modeled as table2 needs cleaning, this is because there are customers on
+the table, and the domain does not support cleaning the table after the customer is
+finished because the extension 3 was not implemented.
 
 
 
